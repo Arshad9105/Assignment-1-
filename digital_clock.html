@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .clock {
+            font-size: 48px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Current Time in Different Time Zones</h1>
+    <div class="clock" id="utc">UTC: --:--:--</div>
+    <div class="clock" id="est">Eastern Standard Time (EST): --:--:--</div>
+    <div class="clock" id="pst">Pacific Standard Time (PST): --:--:--</div>
+    <div class="clock" id="cet">Central European Time (CET): --:--:--</div>
+
+    <script>
+        function updateClock() {
+            const options = { hour12: false, timeZoneName: 'short' };
+            const utc = new Date().toLocaleString('en-US', { timeZone: 'UTC', ...options });
+            const est = new Date().toLocaleString('en-US', { timeZone: 'America/New_York', ...options });
+            const pst = new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles', ...options });
+            const cet = new Date().toLocaleString('en-US', { timeZone: 'Europe/Berlin', ...options });
+
+            document.getElementById('utc').textContent = `UTC: ${utc}`;
+            document.getElementById('est').textContent = `Eastern Standard Time (EST): ${est}`;
+            document.getElementById('pst').textContent = `Pacific Standard Time (PST): ${pst}`;
+            document.getElementById('cet').textContent = `Central European Time (CET): ${cet}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
